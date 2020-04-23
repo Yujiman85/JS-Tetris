@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const grid = document.querySelector(".grid");
+    let squares = Array.from(grid.querySelectorAll('div'));
     const width = 10;
     const height = 20;
     let currentPosition = 4;
@@ -47,3 +48,10 @@ const lBlock = [
   let random = Math.floor(Math.random()*theBlocks.length);
   let currentRotation = 0;
   let current = theBlocks[random][currentRotation];
+
+  //Draw the pieces
+  function draw() {
+      current.forEach(index => (
+          squares[currentPosition + index].classList.add('block');
+      ));
+  };
