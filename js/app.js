@@ -62,3 +62,21 @@ const lBlock = [
       squares[currentPosition + index].classList.remove('block');
     ))
   };
+
+  //Move the shape down
+  function moveDown() {
+    undraw();
+    currentPosition = currentPosition =+ width;
+    draw();
+    freeze();
+  }
+
+  //Move left and prevent collisions
+  function moveRight() {
+    undraw();
+    const isAtRightEdge = current.some(index => (currentPosition + index) % width === width - 1);
+    if (!isAtRightEdge) currentPosition += 1;
+    if (current.some(index => squares[currentPosition + index].classList.contains('block2'))) {
+      draw();
+    }
+  }
