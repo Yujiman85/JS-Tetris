@@ -71,12 +71,24 @@ const lBlock = [
     freeze();
   }
 
-  //Move left and prevent collisions
+  //Move right and prevent collisions
   function moveRight() {
     undraw();
     const isAtRightEdge = current.some(index => (currentPosition + index) % width === width - 1);
     if (!isAtRightEdge) currentPosition += 1;
     if (current.some(index => squares[currentPosition + index].classList.contains('block2'))) {
-      draw();
+      currentPosition -= 1;
     }
+    draw();
+  }
+
+  //Move left and prevent collisions
+  function moveLeft() {
+    undraw();
+    const isAtLeftEdge = current.some(index => (currentPosition + index) % width === 0);
+    if (!isAtLeftEdge) currentPosition -= 1;
+    if (current.some(index => squares[currentPosition + index].classList.contains('block2'))) {
+      currentPosition += 1;
+    }
+    draw();
   }
