@@ -55,3 +55,10 @@ const lBlock = [
           squares[currentPosition + index].classList.add('block');
       ));
   };
+
+  //Undraw the pieces
+  function undraw() {
+    current.forEach(index => (
+      squares[currentPosition + index].classList.remove('block');
+    ))
+  };
