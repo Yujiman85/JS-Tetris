@@ -92,3 +92,14 @@ const lBlock = [
     }
     draw();
   }
+
+  //Rotate the piece
+  function rotate() {
+    undraw();
+    currentRotation++;
+    if (currentRotation === current.length) {
+      currentRotation = 0;
+    }
+    current = theBlocks[random][currentRotation];
+    draw();
+  }
