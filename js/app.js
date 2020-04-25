@@ -4,6 +4,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const width = 10;
     const height = 20;
     let currentPosition = 4;
+
+    //Assign functions to key presses
+    function control(e) {
+      if (e.KeyCode === 37) {
+        moveLeft();
+      } else if (e.KeyCode === 39) {
+        moveRight();
+      } else if (e.KeyCode === 40) {
+        moveDown();
+      } else if (e.KeyCode === 70) {
+        rotate();
+      }
+    };
 })
 
 //The Tetris Blocks
