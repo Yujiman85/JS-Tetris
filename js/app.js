@@ -1,26 +1,27 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const grid = document.querySelector(".grid");
-    let squares = Array.from(grid.querySelectorAll('div'));
-    const width = 10;
-    const height = 20;
-    let currentPosition = 4;
+  const grid = document.querySelector(".grid");
+  let squares = Array.from(grid.querySelectorAll('div'));
+  const width = 10;
+  const height = 20;
+  let currentPosition = 4;
 
-    //Assign functions to key presses
-    function control(e) {
-      if (e.KeyCode === 37) {
-        moveLeft();
-      } else if (e.KeyCode === 39) {
-        moveRight();
-      } else if (e.KeyCode === 40) {
-        moveDown();
-      } else if (e.KeyCode === 70) {
-        rotate();
-      }
-    };
-})
+  //Assign functions to key presses
+  function control(e) {
+    if (e.keyCode === 37) {
+      moveLeft();
+    } else if (e.keyCode === 70) {
+      rotate();
+    } else if (e.keyCode === 39) {
+      moveRight();
+    } else if (e.keyCode === 40) {
+      moveDown();
+    }
+  };
 
-//The Tetris Blocks
-const lBlock = [
+  document.addEventListener('keyup', control);
+
+  //The Tetris Blocks
+  const lBlock = [
     [1,width+1,width*2+1,2],
     [width,width+1,width+2,width*2+2],
     [1,width+1,width*2+1,width*2],
@@ -65,23 +66,23 @@ const lBlock = [
   //Draw the pieces
   function draw() {
       current.forEach(index => (
-          squares[currentPosition + index].classList.add('block');
+          squares[currentPosition + index].classList.add('block')
       ));
   };
 
   //Undraw the pieces
   function undraw() {
     current.forEach(index => (
-      squares[currentPosition + index].classList.remove('block');
+      squares[currentPosition + index].classList.remove('block')
     ))
   };
 
   //Move the shape down
   function moveDown() {
     undraw();
-    currentPosition = currentPosition =+ width;
+    currentPosition = currentPosition += width;
     draw();
-    freeze();
+    // freeze();
   }
 
   //Move right and prevent collisions
@@ -116,3 +117,11 @@ const lBlock = [
     current = theBlocks[random][currentRotation];
     draw();
   }
+
+  draw();
+
+});
+
+
+
+  
