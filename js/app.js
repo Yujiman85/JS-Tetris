@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   const grid = document.querySelector(".grid");
+  const displaySquares = document.querySelectorAll('.previous-grid div');
   let squares = Array.from(grid.querySelectorAll('div'));
   const width = 10;
   const height = 20;
@@ -118,7 +119,30 @@ document.addEventListener('DOMContentLoaded', () => {
     draw();
   }
 
+  //Show previous Block in displaySquares
+  const displayWidth = 4;
+  const displayIndex = 0;
+  let nextRandom = 0;
+
+  const smallBlocks = [
+    [1,displayWidth+1,displayWidth*2+1,2], /* lBlock */
+    [0,displayWidth,displayWidth+1,displayWidth*2+1],  /* zBlock */
+    [1,displayWidth,displayWidth+1,displayWidth+2],    /* tBlock */
+    [0,1,displayWidth,displayWidth+1],     /* oBlock */
+    [1,displayWidth+1,displayWidth*2+1,displayWidth*3+1]  /* iBlock */
+  ];
+
+  function displayShape() {
+    displaySquares.forEach(square => {
+      square.classList.remove('block');
+    })
+    smallBlocks[nextRandom].forEach(index => {
+      displaySquares[displayIndex + index].classList.add('block');
+    })
+  }
+
   draw();
+  displayShape();
 
 });
 
