@@ -132,6 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
     [1,displayWidth+1,displayWidth*2+1,displayWidth*3+1]  /* iBlock */
   ];
 
+  //Display the next shape above the grid
   function displayShape() {
     displaySquares.forEach(square => {
       square.classList.remove('block');
@@ -141,9 +142,23 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   }
 
-  draw();
-  displayShape();
+  //Freezes the blocks once at the bottom
+  function freeze() {
+    if (current.some(index => squares[currentPosition + index + width].classList.contains('block3') 
+    || squares[currentPosition + index + width].classList.contains('block2'))) {
+      current.forEach(index => squares[index + currentPosition].classList.add('block2'))
 
+      random = Math.floor(Math.random() * theBlocks.length);
+      current = theBlocks[random][currentRotation];
+      currentPosition = 4;
+      draw();
+      displayShape();
+    }
+  }
+
+  startBtn.addEventListener('click', ( => {
+    
+  }))
 });
 
 
