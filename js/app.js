@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
   const startBtn = document.querySelector('button');
   const grid = document.querySelector(".grid");
-  const scoreDisplay = document.querySelector("score-display");
-  const linesDisplay = document.querySelector("lines-display");
+  const scoreDisplay = document.querySelector(".score-display");
+  const linesDisplay = document.querySelector(".lines-display");
   const displaySquares = document.querySelectorAll('.previous-grid div');
   let squares = Array.from(grid.querySelectorAll('div'));
   const width = 10;
@@ -175,16 +175,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-});
-
-
-//Game Over
-function gameOver() {
-  if (current.some(index => squares[currentPosition + index].classList.contains('block2'))) {
-    scoreDisplay.innerHTML = 'End';
-    clearInterval(timerId);
+  //Game Over
+  function gameOver() {
+    if (current.some(index => squares[currentPosition + index].classList.contains('block2'))) {
+      scoreDisplay.innerHTML = 'End';
+      clearInterval(timerId);
+    }
   }
-}
+
+});
 
 
 
