@@ -1,10 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
+  const startBtn = document.querySelector('button');
   const grid = document.querySelector(".grid");
   const displaySquares = document.querySelectorAll('.previous-grid div');
   let squares = Array.from(grid.querySelectorAll('div'));
   const width = 10;
   const height = 20;
   let currentPosition = 4;
+  let timerId;
 
   //Assign functions to key presses
   function control(e) {
@@ -19,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  document.addEventListener('keyup', control);
+  document.addEventListener('keydown', control);
 
   //The Tetris Blocks
   const lBlock = [
@@ -83,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
     undraw();
     currentPosition = currentPosition += width;
     draw();
-    // freeze();
+    freeze();
   }
 
   //Move right and prevent collisions
@@ -156,9 +158,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  startBtn.addEventListener('click', ( => {
-    
-  }))
+  startBtn.addEventListener('click', () => {
+    if (timerId) {
+      clearInterval(timerId)
+      timerId = null
+    } else {
+      draw();
+      timerId = setInterval(moveDown, 1000);
+      nextRandom = Math.floor(Math.random() * theBlocks.length);
+      displayShape();
+    }
+  });
+
 });
 
 
