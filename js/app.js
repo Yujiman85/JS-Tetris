@@ -160,6 +160,7 @@ document.addEventListener('DOMContentLoaded', () => {
       draw();
       displayShape();
       gameOver();
+      addScore();
     }
   }
 
@@ -195,6 +196,10 @@ document.addEventListener('DOMContentLoaded', () => {
         row.forEach(index => {
           squares[index].classList.remove('block2') || squares[index].classList.remove('block')
         })
+        //Splice array
+        const squaresRemoved = squares.splice(currentIndex, width);
+        squares = squaresRemoved.concat(squares);
+        squares.forEach(cell = grid.appendChild(cell))
       }
     }
   }
