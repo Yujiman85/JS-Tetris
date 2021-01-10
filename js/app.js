@@ -186,20 +186,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
   //Add score
   function addScore() {
-    for (currentIndex = 0; currentIndex < 199; currentIndex += width) {
-      const row = [currentIndex,currentIndex+1,currentIndex+2,currentIndex+3,currentIndex+4,currentIndex+5,currentIndex+6,currentIndex+7,currentIndex+8,currentIndex+9]
+    for (i = 0; i < 199; i += width) {
+      const row = [i,i+1,i+2,i+3,i+4,i+5,i+6,i+7,i+8,i+9];
+
       if (row.every(index => squares[index].classList.contains('block2'))) {
         score += 10;
         lines += 1;
         scoreDisplay.innerHTML = 'Score: ' + score;
         linesDisplay.innerHTML = 'Lines: ' + lines;
         row.forEach(index => {
-          squares[index].classList.remove('block2') || squares[index].classList.remove('block')
+          squares[index].classList.remove('block2');
+          squares[index].classList.remove('block');
+          squares[index].style.backgroundColor = '';
         })
         //Splice array
-        const squaresRemoved = squares.splice(currentIndex, width);
-        squares = squaresRemoved.concat(squares);
-        squares.forEach(cell = grid.appendChild(cell))
+        const squaresRemoved = squares.splice(i, width)
+        squares = squaresRemoved.concat(squares)
+        squares.forEach(cell => grid.appendChild(cell))
       }
     }
   }
